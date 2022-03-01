@@ -19,7 +19,7 @@ public class Post {
     private Long id;
 
     @NotNull
-    private Long userID;
+    private Long userId;
 
     @NotNull
     @NotBlank
