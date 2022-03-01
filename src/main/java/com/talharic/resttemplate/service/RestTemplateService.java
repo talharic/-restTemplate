@@ -2,6 +2,7 @@ package com.talharic.resttemplate.service;
 
 import com.talharic.resttemplate.dto.PostDto;
 import com.talharic.resttemplate.dto.converter.PostDtoConverter;
+import com.talharic.resttemplate.exception.PostNotFoundException;
 import com.talharic.resttemplate.model.Post;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
