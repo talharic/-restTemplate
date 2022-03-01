@@ -10,7 +10,7 @@ public class PostDtoConverter {
     public PostDto convert(Post from) {
         return  PostDto
                 .builder()
-                .userId(from.getUserID())
+                .userId(from.getUserId())
                 .title(from.getTitle())
                 .body(from.getBody())
                 .build();
