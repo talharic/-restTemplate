@@ -26,7 +26,7 @@ public class RestTemplateController {
     }
 
 
-    @GetMapping("/{search}")
+    @GetMapping("/search/{search}")
     public ResponseEntity<List<PostDto>> getPostBySearch(@PathVariable String search) {
         return ResponseEntity.ok(restTemplateService.getPostBySearch(search));
     }
