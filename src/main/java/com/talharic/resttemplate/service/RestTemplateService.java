@@ -7,6 +7,7 @@ import com.talharic.resttemplate.model.Post;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -51,7 +52,6 @@ public class RestTemplateService {
         return postDtoConverter.convert(Objects.requireNonNull(restTemplate.getForObject(
                 apiBaseUrl + "/posts/" + id,
                 Post.class)));
-
     }
 
 
@@ -62,4 +62,11 @@ public class RestTemplateService {
                 }).getBody();
     }
 
+    public PostDto create(PostDto post) {
+        ResponseEntity<PostDto> request = restTemplate.postForEntity(
+                apiBaseUrl + "/posts",
+                post,
+                PostDto.class);
+        return request.getBody();
+    }
 }

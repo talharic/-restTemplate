@@ -3,11 +3,9 @@ package com.talharic.resttemplate.controller;
 import com.talharic.resttemplate.dto.PostDto;
 import com.talharic.resttemplate.service.RestTemplateService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -38,11 +36,9 @@ public class RestTemplateController {
     }
 
 
-/*
     @PostMapping
-    public ResponseEntity<List<PostDto>> createPost(@Valid @RequestBody PostDto post) {
+    public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto post) {
         return ResponseEntity.ok(restTemplateService.create(post));
     }
-*/
 
 }
