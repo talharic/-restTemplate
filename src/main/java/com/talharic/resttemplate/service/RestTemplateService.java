@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,18 +41,18 @@ public class RestTemplateService {
                 .stream()
                 .map(postDtoConverter::convert)
                 .filter(x -> x.getBody().toString().contains(search))
-                .collect(Collectors.toList());
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Optional::of))
+                .filter(l -> !l.isEmpty())
+                .orElseThrow(() -> new PostNotFoundException("post not found with searched words :("));
     }
 
 
-    public PostDto getPostById(Long id) throws PostNotFoundException {
-        PostDto postDto = postDtoConverter.convert(Objects.requireNonNull(restTemplate.getForObject(
+    public PostDto getPostById(Long id) {
+        return postDtoConverter.convert(Objects.requireNonNull(restTemplate.getForObject(
                 apiBaseUrl + "/posts/" + id,
                 Post.class)));
-        return postDto;
+
     }
-
-
 
 
     protected List<Post> getPostList() {
